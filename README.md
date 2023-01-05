@@ -1,4 +1,5 @@
 ## Apply Clean Architecture
+```
 ├───data
 │   ├───model
 │   │   ├───Post
@@ -22,3 +23,5 @@
     │   └───Register
     ├───resource
     └───widget
+
+```
