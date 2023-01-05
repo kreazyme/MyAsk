@@ -1,7 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/data/model/User/RegisterRequestModel.dart';
+import 'package:flutter_application_1/data/model/User/request/RegisterRequestModel.dart';
+import 'package:flutter_application_1/domain/usecases/user/register_usecase.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:flutter_application_1/data/services/ApiService.dart';
 import '../Home/HomePage.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -12,20 +14,25 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final RegisterUsecase _registerUsecase = RegisterUsecase();
+
   Future<void> register() async {
     var request = RegisterRequestModel(
       username: username,
       password: password,
       name: name,
     );
-    var response = await ApiService().register(request);
-    if (response != null) {
+    var response = await _registerUsecase.run(request);
+    if (response != "") {
       await Hive.openBox("user");
       Hive.box("user").put("token", response);
       Hive.close();
-      // ignore: use_build_context_synchronously
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
+          (route) => false);
     }
   }
 

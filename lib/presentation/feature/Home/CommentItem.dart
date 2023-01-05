@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/data/model/Post/CommentResponseModel.dart';
+import 'package:flutter_application_1/domain/entities/comment/comment_entity.dart';
 
 class CommentItemWidget extends StatefulWidget {
   const CommentItemWidget({super.key, required this.item});
 
-  final CommentResponseModel item;
+  final CommentEntity item;
 
   @override
   State<CommentItemWidget> createState() => _CommentItemWidgetState();

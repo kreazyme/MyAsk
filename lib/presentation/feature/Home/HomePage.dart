@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/data/model/Post/PostModel.dart';
 import 'package:flutter_application_1/data/services/ApiService.dart';
+import 'package:flutter_application_1/domain/entities/post/post_response_entity.dart';
+import 'package:flutter_application_1/domain/usecases/post/get_post_usecase.dart';
 import 'package:flutter_application_1/presentation/resource/AppEnum.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -20,13 +22,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   LoadingState loadingState = LoadingState.loading;
-  late PostModel? posts;
+  late PostResponseEntity? posts;
   String? token;
   int totalPage = 1;
   int currentPage = 1;
+  final GetPostUsecase _getPostUsecase = GetPostUsecase();
 
   Future<void> getPost() async {
-    posts = await ApiService().getPost();
+    posts = await _getPostUsecase.run(1);
     setState(() {
       loadingState = LoadingState.success;
       totalPage = posts?.totalPage ?? 1;
@@ -121,11 +124,11 @@ class _HomePageState extends State<HomePage> {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) =>
-                              PostItemWidget(item: posts!.data![index]),
+                              PostItemWidget(item: posts!.posts[index]),
                           separatorBuilder: (context, index) => const Divider(
                                 height: 2,
                               ),
-                          itemCount: posts!.data!.length),
+                          itemCount: posts!.posts.length),
                     )),
           Container(
               child: currentPage < totalPage &&

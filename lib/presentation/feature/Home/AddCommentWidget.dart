@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/data/services/ApiService.dart';
+import 'package:flutter_application_1/domain/usecases/post/create_post_usecase.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../Login/LoginPage.dart';
@@ -85,8 +86,9 @@ class CreateNewPostWidget extends StatefulWidget {
 
 class _CreateNewPostWidgetState extends State<CreateNewPostWidget> {
   String content = "";
+  final CreatePostUsecase _createPostUsecase = CreatePostUsecase();
   Future<void> createPost() async {
-    await ApiService().createPost(content);
+    await _createPostUsecase.run(content);
   }
 
   @override

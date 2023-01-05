@@ -1,8 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/data/model/User/LoginrequestModel.dart';
-import 'package:flutter_application_1/data/services/ApiService.dart';
+import 'package:flutter_application_1/data/model/User/request/LoginrequestModel.dart';
+import 'package:flutter_application_1/domain/usecases/user/login_usecase.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import '../Home/HomePage.dart';
@@ -17,12 +17,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String password = "";
   String username = "";
+  final LoginUsecase _loginUsecase = LoginUsecase();
 
   Future<void> login() async {
     var request = LoginRequestModel(username: username, password: password);
     try {
-      var token = await ApiService().login(request);
-      if (token != null) {
+      var token = await _loginUsecase.run(request);
+      if (token != "") {
         print(token);
         await Hive.openBox("user");
         await Hive.box("user").put("token", token);
