@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/data/model/Post/PostModel.dart';
+import 'package:flutter_application_1/domain/entities/post/post_entity.dart';
 import 'package:flutter_application_1/presentation/resource/AppEnum.dart';
 
 import 'CommentItem.dart';
@@ -7,7 +8,7 @@ import 'CommentItem.dart';
 class PostItemWidget extends StatefulWidget {
   const PostItemWidget({super.key, required this.item});
 
-  final PostItemModel item;
+  final PostEntity item;
 
   @override
   State<PostItemWidget> createState() => _PostItemWidgetState();

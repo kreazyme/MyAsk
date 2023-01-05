@@ -1,4 +1,7 @@
 import 'package:flutter_application_1/data/model/Post/CommentResponseModel.dart';
+import 'package:flutter_application_1/domain/entities/post/post_entity.dart';
+import 'package:flutter_application_1/domain/entities/post/post_response_entity.dart';
+import 'package:flutter_application_1/domain/entities/user/user_entity.dart';
 
 class PostModel {
   List<PostItemModel>? data;
@@ -23,6 +26,13 @@ class PostModel {
     }
     data['totalPage'] = totalPage;
     return data;
+  }
+
+  PostResponseEntity toEntity() {
+    return PostResponseEntity(
+      posts: data!.map((e) => e.toEntity()).toList(),
+      totalPage: totalPage!,
+    );
   }
 }
 
@@ -65,6 +75,16 @@ class PostItemModel {
     data['comments'] = comments.map((v) => v.toJson()).toList();
     return data;
   }
+
+  PostEntity toEntity() {
+    return PostEntity(
+      user: user.toEntity(),
+      postId: sId,
+      content: content,
+      createdAt: createdAt,
+      comments: comments.map((e) => e.toEntity()).toList(),
+    );
+  }
 }
 
 class User {
@@ -90,5 +110,13 @@ class User {
     data['username'] = username;
     data['name'] = name;
     return data;
+  }
+
+  UserEntity toEntity() {
+    return UserEntity(
+      userId: userId,
+      username: username,
+      name: name,
+    );
   }
 }

@@ -1,3 +1,6 @@
+import 'package:flutter_application_1/domain/entities/comment/comment_entity.dart';
+import 'package:flutter_application_1/domain/entities/user/user_entity.dart';
+
 class CommentResponseModel {
   final User user;
   final String content;
@@ -22,6 +25,14 @@ class CommentResponseModel {
     data['content'] = content;
     data['createdAt'] = createdAt;
     return data;
+  }
+
+  CommentEntity toEntity() {
+    return CommentEntity(
+      user: user.toEntity(),
+      content: content,
+      createdAt: createdAt,
+    );
   }
 }
 
@@ -48,5 +59,13 @@ class User {
     data['username'] = username;
     data['name'] = name;
     return data;
+  }
+
+  UserEntity toEntity() {
+    return UserEntity(
+      userId: userId,
+      username: username,
+      name: name,
+    );
   }
 }

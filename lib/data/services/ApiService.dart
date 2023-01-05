@@ -2,21 +2,22 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/data/model/Post/PostModel.dart';
-import 'package:flutter_application_1/data/model/User/LoginrequestModel.dart';
-import 'package:flutter_application_1/data/model/User/RegisterRequestModel.dart';
+import 'package:flutter_application_1/data/model/User/request/LoginrequestModel.dart';
+import 'package:flutter_application_1/data/model/User/request/RegisterRequestModel.dart';
+import 'package:flutter_application_1/domain/entities/post/post_response_entity.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 
 import 'ApiConstant.dart';
 
 class ApiService {
-  Future<PostModel?> getPost() async {
+  Future<PostResponseEntity?> getPost(int page) async {
     try {
       var url = Uri.parse(ApiConstant.getPost);
       debugPrint(url.toString());
       var response = await http.get(url);
       if (response.statusCode == 200) {
-        return PostModel.fromJson(json.decode(response.body));
+        return PostModel.fromJson(json.decode(response.body)).toEntity();
       } else {
         throw Exception('Failed to load post');
       }
