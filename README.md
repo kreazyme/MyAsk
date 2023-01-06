@@ -1,6 +1,8 @@
 ## BLoC
 Apply BLoC Pattern in this project with ```bloc_flutter``` package
 
+## Using CI/CD with Github Action and CodeMagic :sparkles:
+
 ## Clean Architecture
 Apply Clean Architecture in this project. Here are Project Structure
 ```
