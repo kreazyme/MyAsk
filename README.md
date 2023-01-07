@@ -10,7 +10,8 @@ Apply Clean Architecture in this project. Here are Project Structure
 │   ├───model
 │   │   ├───Post
 │   │   └───User
-│   │       └───request
+│   │       ├───request
+│   │       └───response
 │   ├───repositories
 │   └───services
 ├───domain
@@ -25,9 +26,10 @@ Apply Clean Architecture in this project. Here are Project Structure
 └───presentation
     ├───feature
     │   ├───Home
+    │   │   └───bloc
     │   ├───Login
+    │   │   └───bloc
     │   └───Register
     ├───resource
     └───widget
-
 ```
