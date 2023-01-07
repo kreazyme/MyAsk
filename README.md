@@ -1,5 +1,15 @@
+## Expected:
+- [ ] Apply Unit test
+- [ ] Apply Dependency Injection
+- [ ] Install Firebase Crashlytics
+- [ ] Install Firebase Cloud Message
+- [ ] Apply freezed
+
 ## BLoC
 Apply BLoC Pattern in this project with ```bloc_flutter``` package
+
+## Handle API
+Using ```retrofit``` and ```json_serializable```
 
 ## Using CI/CD with Github Action and CodeMagic :sparkles:
 
