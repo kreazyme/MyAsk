@@ -33,7 +33,7 @@ class LoginRequestModel {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  Map<String, dynamic> toJson() => toMap();
 
   factory LoginRequestModel.fromJson(String source) =>
       LoginRequestModel.fromMap(json.decode(source) as Map<String, dynamic>);

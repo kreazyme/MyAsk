@@ -26,7 +26,6 @@ class _RegisterPageState extends State<RegisterPage> {
     if (response != "") {
       await Hive.openBox("user");
       Hive.box("user").put("token", response);
-      Hive.close();
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
