@@ -8,4 +8,14 @@ class PostResponseEntity {
     required this.posts,
     required this.totalPage,
   });
+
+  PostResponseEntity copyWith({
+    List<PostEntity>? posts,
+    int? totalPage,
+  }) {
+    return PostResponseEntity(
+      posts: posts ?? this.posts,
+      totalPage: totalPage ?? this.totalPage,
+    );
+  }
 }

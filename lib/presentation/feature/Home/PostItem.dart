@@ -85,15 +85,6 @@ class _PostItemWidgetState extends State<PostItemWidget> {
                                     child: const CircularProgressIndicator())
                                 : Container(),
                           ),
-                          Container(
-                            child: isLoading == LoadingState.success &&
-                                    currentPage < totalPage
-                                ? MaterialButton(
-                                    onPressed: loadmoreComment,
-                                    child: const Text("Show more comments"),
-                                  )
-                                : Container(),
-                          )
                         ],
                       ),
                     ),

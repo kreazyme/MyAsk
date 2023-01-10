@@ -34,7 +34,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              'http://ask.api.kreazy.me/api/post/get?page=1&perPage=1',
+              'http://ask.api.kreazy.me/api/post/get',
               queryParameters: queryParameters,
               data: _data,
             )
