@@ -8,6 +8,9 @@
 ## BLoC
 Apply BLoC Pattern in this project with ```bloc_flutter``` package
 
+## Hive Database
+Using Hive to save Token info
+
 ## Handle API
 Using ```retrofit``` and ```json_serializable```
 
