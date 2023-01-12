@@ -2,12 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/data/model/User/request/RegisterRequestModel.dart';
-import 'package:flutter_application_1/domain/usecases/user/register_usecase.dart';
 import 'package:flutter_application_1/presentation/feature/Register/bloc/register_presenter.dart';
 import 'package:flutter_application_1/presentation/feature/Register/bloc/register_state.dart';
 import 'package:flutter_application_1/presentation/resource/AppEnum.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/adapters.dart';
 import '../Home/HomePage.dart';
 
 class RegisterPage extends StatefulWidget {

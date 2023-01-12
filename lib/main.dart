@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
+import 'package:flutter_application_1/domain/usecases/auth/init_token_usecase.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'presentation/feature/Home/HomePage.dart';
 
 Future<void> main() async {
   runApp(const MyApp());
-  await Hive.initFlutter();
+  await InitTokenUsecase().run();
+  // await Hive.initFlutter();
+  // await Hive.openBox("user");
 }
 
 class MyApp extends StatelessWidget {

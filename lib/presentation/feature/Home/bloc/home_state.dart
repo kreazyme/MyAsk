@@ -5,11 +5,13 @@ class HomeState {
   PostResponseEntity data;
   LoadingState isLoading;
   int curentPage;
+  bool isLogin;
 
   HomeState({
     required this.data,
     required this.isLoading,
     required this.curentPage,
+    required this.isLogin,
   });
 
   factory HomeState.initial() => HomeState(
@@ -19,17 +21,20 @@ class HomeState {
         ),
         isLoading: LoadingState.initial,
         curentPage: 1,
+        isLogin: false,
       );
 
   HomeState copyWith({
     PostResponseEntity? data,
     LoadingState? isLoading,
     int? curentPage,
+    bool? isLogin,
   }) {
     return HomeState(
       data: data ?? this.data,
       isLoading: isLoading ?? this.isLoading,
       curentPage: curentPage ?? this.curentPage,
+      isLogin: isLogin ?? this.isLogin,
     );
   }
 
@@ -42,6 +47,7 @@ class HomeState {
       ),
       isLoading: isLoading,
       curentPage: curentPage,
+      isLogin: isLogin,
     );
   }
 }

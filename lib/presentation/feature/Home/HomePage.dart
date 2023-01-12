@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/domain/entities/post/post_response_entity.dart';
-import 'package:flutter_application_1/domain/usecases/post/get_post_usecase.dart';
 import 'package:flutter_application_1/presentation/feature/Home/bloc/home_presenter.dart';
 import 'package:flutter_application_1/presentation/feature/Home/bloc/home_state.dart';
 import 'package:flutter_application_1/presentation/resource/AppEnum.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 import '../Login/LoginPage.dart';
 import '../Register/RegisterPage.dart';
-import 'AddCommentWidget.dart';
+import 'AddCommentDialog.dart';
 import 'PostItem.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,27 +17,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late PostResponseEntity? posts;
-  String? token;
   final HomePresenter _homePresenter = HomePresenter();
-
-  Future<void> setToken() async {
-    try {
-      var box = Hive.box("user");
-      setState(() {
-        token = box.get("token");
-      });
-    } catch (e) {
-      token = null;
-    }
-  }
 
   @override
   void initState() {
     super.initState();
-    // getPost();
     _homePresenter.init();
-    setToken();
   }
 
   @override
@@ -49,12 +31,14 @@ class _HomePageState extends State<HomePage> {
       bloc: _homePresenter,
       listener: (context, state) => {},
       builder: (context, state) => Scaffold(
-        floatingActionButton: const AddCommentWidget(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: showCustomDialog,
+        ),
         appBar: AppBar(
           title: const Text("Ask me something"),
           actions: [
             Container(
-              child: token == null
+              child: !state.isLogin
                   ? MaterialButton(
                       onPressed: () {
                         Navigator.push(
@@ -71,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                   : Container(),
             ),
             Container(
-              child: token == null
+              child: !state.isLogin
                   ? MaterialButton(
                       onPressed: () {
                         Navigator.push(
@@ -88,15 +72,10 @@ class _HomePageState extends State<HomePage> {
                   : Container(),
             ),
             Container(
-                child: token == null
+                child: !state.isLogin
                     ? Container()
                     : MaterialButton(
-                        onPressed: () {
-                          Hive.box("user").delete("token");
-                          setState(() {
-                            token = null;
-                          });
-                        },
+                        onPressed: _homePresenter.logout,
                         child: const Text(
                           "Logout",
                           style: TextStyle(color: Colors.white),
@@ -150,6 +129,15 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+    );
+  }
+
+  void showCustomDialog() {
+    showDialog(
+      context: context,
+      builder: (ctx) => _homePresenter.state.isLogin == true
+          ? const CreateNewPostDialog()
+          : const LoginDialog(),
     );
   }
 }
