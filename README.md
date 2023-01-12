@@ -20,7 +20,9 @@ Using ```retrofit``` and ```json_serializable```
 Apply Clean Architecture in this project. Here are Project Structure
 ```
 ├───data
+│   ├───local
 │   ├───model
+│   │   ├───DetailPost
 │   │   ├───Post
 │   │   └───User
 │   │       ├───request
@@ -32,8 +34,10 @@ Apply Clean Architecture in this project. Here are Project Structure
 │   │   ├───comment
 │   │   ├───post
 │   │   └───user
+│   ├───local
 │   ├───repositories
 │   └───usecases
+│       ├───auth
 │       ├───post
 │       └───user
 └───presentation
@@ -42,7 +46,10 @@ Apply Clean Architecture in this project. Here are Project Structure
     │   │   └───bloc
     │   ├───Login
     │   │   └───bloc
+    │   ├───Post
+    │   │   └───bloc
     │   └───Register
+    │       └───bloc
     ├───resource
     └───widget
 ```
