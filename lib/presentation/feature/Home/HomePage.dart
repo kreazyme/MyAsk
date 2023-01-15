@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../Login/LoginPage.dart';
 import '../Register/RegisterPage.dart';
-import 'AddCommentDialog.dart';
+import 'AddPostDialog.dart';
 import 'PostItem.dart';
 
 class HomePage extends StatefulWidget {
@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
       builder: (context, state) => Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: showCustomDialog,
+          child: const Icon(Icons.add),
         ),
         appBar: AppBar(
           title: const Text("Ask me something"),
@@ -90,7 +91,10 @@ class _HomePageState extends State<HomePage> {
               Container(
                   child: state.isLoading == LoadingState.loading
                       ? const Center(
-                          child: CircularProgressIndicator(),
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 100),
+                            child: CircularProgressIndicator(),
+                          ),
                         )
                       : Center(
                           child: ListView.separated(
