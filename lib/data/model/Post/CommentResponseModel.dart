@@ -20,7 +20,7 @@ class CommentResponseModel {
       );
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['user'] = user.toJson();
     data['content'] = content;
     data['createdAt'] = createdAt;
@@ -54,7 +54,7 @@ class User {
       );
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['user_id'] = userId;
     data['username'] = username;
     data['name'] = name;

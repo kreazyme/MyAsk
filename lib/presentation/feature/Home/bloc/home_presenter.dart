@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/domain/entities/post/post_entity.dart';
 import 'package:flutter_application_1/domain/usecases/auth/delete_token_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/auth/get_token_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/post/get_post_usecase.dart';
@@ -56,5 +57,13 @@ class HomePresenter extends Cubit<HomeState> {
     } catch (err) {
       debugPrint(err.toString());
     }
+  }
+
+  void addPost(PostEntity post) {
+    emit(
+      state.copyWith(
+        data: state.data.addPost(post: post),
+      ),
+    );
   }
 }

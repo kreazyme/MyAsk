@@ -18,4 +18,13 @@ class PostResponseEntity {
       totalPage: totalPage ?? this.totalPage,
     );
   }
+
+  PostResponseEntity addPost({
+    required PostEntity post,
+  }) {
+    return PostResponseEntity(
+      posts: [...posts, ...posts],
+      totalPage: totalPage,
+    );
+  }
 }
