@@ -1,38 +1,63 @@
 import 'package:flutter_application_1/domain/entities/comment/comment_entity.dart';
+import 'package:flutter_application_1/domain/entities/post/post_entity.dart';
+import 'package:flutter_application_1/domain/entities/user/user_entity.dart';
 import 'package:flutter_application_1/presentation/resource/AppEnum.dart';
 
 class PostDetailState {
-  final String postId;
-  final String content;
-  final List<CommentEntity> comments;
+  final PostEntity post;
   final LoadingState isLoading;
+  final int currentPage;
+  final int totalPage;
+  final bool isLogin;
+  final String comment;
 
-  const PostDetailState(
-      {required this.postId,
-      required this.content,
-      required this.comments,
-      required this.isLoading});
+  const PostDetailState({
+    required this.post,
+    required this.isLoading,
+    required this.currentPage,
+    required this.totalPage,
+    required this.comment,
+    required this.isLogin,
+  });
 
   factory PostDetailState.initial() => const PostDetailState(
-      postId: "", content: "", comments: [], isLoading: LoadingState.initial);
+      isLoading: LoadingState.initial,
+      currentPage: 1,
+      totalPage: 1,
+      comment: "",
+      isLogin: false,
+      post: PostEntity(
+        comments: [],
+        content: "",
+        createdAt: "",
+        postId: "",
+        user: UserEntity(userId: "", name: "", username: "s"),
+      ));
 
   PostDetailState copyWith({
-    String? postId,
-    String? content,
-    List<CommentEntity>? comments,
+    PostEntity? post,
     LoadingState? isLoading,
+    int? currentPage,
+    int? totalPage,
+    String? comment,
+    bool? isLogin,
   }) =>
       PostDetailState(
-          postId: postId ?? this.postId,
-          content: content ?? this.content,
-          comments: comments ?? this.comments,
-          isLoading: isLoading ?? this.isLoading);
+        post: post ?? this.post,
+        isLoading: isLoading ?? this.isLoading,
+        currentPage: currentPage ?? this.currentPage,
+        totalPage: totalPage ?? this.totalPage,
+        comment: comment ?? this.comment,
+        isLogin: isLogin ?? this.isLogin,
+      );
 
   PostDetailState addComment({required List<CommentEntity> data}) =>
       PostDetailState(
-        postId: postId,
-        content: content,
-        comments: comments + data,
+        post: post.copyWith(comments: [...post.comments, ...data]),
         isLoading: isLoading,
+        currentPage: currentPage,
+        totalPage: totalPage,
+        comment: comment,
+        isLogin: isLogin,
       );
 }

@@ -15,4 +15,19 @@ class PostEntity {
     required this.createdAt,
     required this.comments,
   });
+
+  PostEntity copyWith({
+    UserEntity? user,
+    String? postId,
+    String? content,
+    String? createdAt,
+    List<CommentEntity>? comments,
+  }) =>
+      PostEntity(
+        user: user ?? this.user,
+        postId: postId ?? this.postId,
+        content: content ?? this.content,
+        createdAt: createdAt ?? this.createdAt,
+        comments: comments ?? this.comments,
+      );
 }
