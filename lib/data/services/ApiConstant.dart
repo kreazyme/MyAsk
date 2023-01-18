@@ -8,4 +8,5 @@ class ApiConstant {
   static const String login = "$BASE_URL/user/login";
   static const String createPost = "$BASE_URL/post/create";
   static const String getComment = "$BASE_URL/post/comment";
+  static const String addComment = "$BASE_URL/post/comment";
 }

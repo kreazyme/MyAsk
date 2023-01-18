@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_application_1/data/model/Comment/request/AddCommentRequestModel.dart';
 import 'package:flutter_application_1/data/model/Comment/request/CommentRequestModel.dart';
 import 'package:flutter_application_1/data/model/Post/request/PostRequestModel.dart';
 import 'package:flutter_application_1/data/services/api_client.dart';
+import 'package:flutter_application_1/domain/entities/comment/add_comment_entity.dart';
 import 'package:flutter_application_1/domain/entities/comment/list_comment_response_entity.dart';
 import 'package:flutter_application_1/domain/entities/post/post_entity.dart';
 import 'package:flutter_application_1/domain/entities/post/post_response_entity.dart';
@@ -30,5 +32,12 @@ class HomeRepoImplement extends HomeRepo {
       CommentRequestModel request) async {
     final data = await _apiClient.getComment(request.postId, request.page);
     return data.toEntity();
+  }
+
+  @override
+  Future<AddCommentEntity> addComment(AddCommentRequestModel request) async {
+    String token = await _getTokenUsecase.run();
+    var response = await _apiClient.addComment(token, request);
+    return response.toEntity();
   }
 }

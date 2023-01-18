@@ -60,4 +60,14 @@ class PostDetailState {
         comment: comment,
         isLogin: isLogin,
       );
+
+  PostDetailState changeComment({required List<CommentEntity> data}) =>
+      PostDetailState(
+        post: post.copyWith(comments: data),
+        isLoading: isLoading,
+        currentPage: currentPage,
+        totalPage: totalPage,
+        comment: comment,
+        isLogin: isLogin,
+      );
 }
