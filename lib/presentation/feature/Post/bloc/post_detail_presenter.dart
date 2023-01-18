@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/data/model/Comment/request/AddCommentRequestModel.dart';
 import 'package:flutter_application_1/data/model/Comment/request/CommentRequestModel.dart';
 import 'package:flutter_application_1/domain/entities/comment/list_comment_response_entity.dart';
 import 'package:flutter_application_1/domain/entities/post/post_entity.dart';
 import 'package:flutter_application_1/domain/usecases/auth/get_token_usecase.dart';
+import 'package:flutter_application_1/domain/usecases/comment/add_comment_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/comment/get_comment_usecase.dart';
 import 'package:flutter_application_1/presentation/feature/Post/bloc/post_detail_state.dart';
 import 'package:flutter_application_1/presentation/resource/AppEnum.dart';
@@ -15,6 +17,7 @@ class PostDetailPresenter extends Cubit<PostDetailState> {
 
   final GetCommentUsecase _getCommentUsecase = GetCommentUsecase();
   final GetTokenUsecase _getTokenUsecase = GetTokenUsecase();
+  final AddCommentUsecase _addCommentUsecase = AddCommentUsecase();
 
   init(PostEntity post) async {
     var data = PostEntity(
@@ -51,8 +54,20 @@ class PostDetailPresenter extends Cubit<PostDetailState> {
     return await _getCommentUsecase.run(request);
   }
 
-  void addComment(ListCommentResponseEntity data) {
-    // emit(state.addComment(data: data));
+  Future<void> addComment() async {
+    emit(state.copyWith(isLoading: LoadingState.loading));
+    AddCommentRequestModel request = AddCommentRequestModel(
+      postId: state.post.postId,
+      content: state.comment,
+    );
+    try {
+      var result = await _addCommentUsecase.run(request);
+      emit(state.copyWith(comment: ""));
+      emit(state.changeComment(data: result.comments));
+    } catch (err) {
+      debugPrint(err.toString());
+    }
+    emit(state.copyWith(isLoading: LoadingState.success));
   }
 
   void loadMore(int page) {}

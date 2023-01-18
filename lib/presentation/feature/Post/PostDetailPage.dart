@@ -133,7 +133,9 @@ class _DetailPostPageState extends State<DetailPostPage> {
                             _postDetailPresenter.onChangeComment(value),
                         decoration: InputDecoration(
                             suffixIcon: GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                _postDetailPresenter.addComment();
+                              },
                               child: Icon(
                                 Icons.send_rounded,
                                 color: state.comment == ""

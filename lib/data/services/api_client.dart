@@ -1,3 +1,5 @@
+import 'package:flutter_application_1/data/model/Comment/request/AddCommentRequestModel.dart';
+import 'package:flutter_application_1/data/model/Comment/response/AddCommentResponseModel.dart';
 import 'package:flutter_application_1/data/model/Comment/response/ListCommentResponseModel.dart';
 import 'package:flutter_application_1/data/model/Post/PostModel.dart';
 import 'package:flutter_application_1/data/model/Post/request/PostRequestModel.dart';
@@ -39,5 +41,11 @@ abstract class ApiClient {
   Future<ListCommentResponseModel> getComment(
     @Query("post_id") String postId,
     @Query("page") int page,
+  );
+
+  @POST(ApiConstant.addComment)
+  Future<AddCommentResponseModel> addComment(
+    @Header("Authorization") String token,
+    @Body() AddCommentRequestModel request,
   );
 }
