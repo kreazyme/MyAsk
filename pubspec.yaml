@@ -22,6 +22,7 @@ dependencies:
   json_serializable:  6.5.4
   build_runner: 2.3.3
   retrofit_generator: 4.2.0
+  get_time_ago: 1.2.1
 
 dev_dependencies:
   flutter_test:

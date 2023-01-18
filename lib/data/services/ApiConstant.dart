@@ -7,4 +7,5 @@ class ApiConstant {
   static const String register = "$BASE_URL/user/register";
   static const String login = "$BASE_URL/user/login";
   static const String createPost = "$BASE_URL/post/create";
+  static const String getComment = "$BASE_URL/post/comment";
 }
