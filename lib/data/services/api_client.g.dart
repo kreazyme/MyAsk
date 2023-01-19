@@ -13,7 +13,7 @@ class _ApiClient implements ApiClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://ask.api.kreazy.me/api';
+    baseUrl ??= 'https://ask.api.kreazy.me/api';
   }
 
   final Dio _dio;
@@ -34,7 +34,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              'http://ask.api.kreazy.me/api/post/get',
+              'https://ask.api.kreazy.me/api/post/get',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -58,7 +58,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              'http://ask.api.kreazy.me/api/user/register',
+              'https://ask.api.kreazy.me/api/user/register',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -82,7 +82,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              'http://ask.api.kreazy.me/api/user/login',
+              'https://ask.api.kreazy.me/api/user/login',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -110,7 +110,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              'http://ask.api.kreazy.me/api/post/create',
+              'https://ask.api.kreazy.me/api/post/create',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -139,7 +139,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              'http://ask.api.kreazy.me/api/post/comment',
+              'https://ask.api.kreazy.me/api/post/comment',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -167,7 +167,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              'http://ask.api.kreazy.me/api/post/comment',
+              'https://ask.api.kreazy.me/api/post/comment',
               queryParameters: queryParameters,
               data: _data,
             )
