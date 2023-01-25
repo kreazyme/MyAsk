@@ -6,6 +6,7 @@ import 'package:flutter_application_1/presentation/feature/Register/bloc/registe
 import 'package:flutter_application_1/presentation/feature/Register/bloc/register_state.dart';
 import 'package:flutter_application_1/presentation/resource/AppEnum.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../Home/HomePage.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -41,14 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return BlocConsumer<RegisterPresenter, RegisterState>(
       listener: (context, state) => {
         if (state.isLoading == LoadingState.success)
-          {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomePage(),
-                ),
-                (route) => false)
-          }
+          {GoRouter.of(context).go("/home")}
       },
       bloc: _presenter,
       builder: (context, state) => Scaffold(

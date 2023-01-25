@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/domain/usecases/auth/init_token_usecase.dart';
-
-import 'presentation/feature/Home/HomePage.dart';
+import 'package:flutter_application_1/presentation/router/router.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 Future<void> main() async {
-  runApp(const MyApp());
+  setPathUrlStrategy();
+  runApp(const HomeRouter());
   await InitTokenUsecase().run();
-  // await Hive.initFlutter();
-  // await Hive.openBox("user");
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HomeRouter extends StatelessWidget {
+  const HomeRouter({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Kreazy Ask',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const HomePage(),
+      routerConfig: globalRouter,
     );
   }
 }
