@@ -14,6 +14,9 @@ Using Hive to save Token info
 ## Handle API
 Using ```retrofit``` and ```json_serializable```
 
+## Using [go_router]
+Generate dynamic link
+
 ## Using CI/CD with Github Action and CodeMagic :sparkles:
 
 ## Clean Architecture
