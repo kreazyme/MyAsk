@@ -5,6 +5,7 @@ import 'package:flutter_application_1/data/model/User/request/LoginrequestModel.
 import 'package:flutter_application_1/presentation/feature/Login/bloc/login_presenter.dart';
 import 'package:flutter_application_1/presentation/feature/Login/bloc/login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../resource/AppEnum.dart';
 import '../Home/HomePage.dart';
 
@@ -50,14 +51,7 @@ class _LoginPageState extends State<LoginPage> {
         if (state.isLoading == LoadingState.error)
           {showCustomDialog("Wrong username or password")}
         else if (state.isLoading == LoadingState.success)
-          {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomePage(),
-                ),
-                (route) => false)
-          }
+          {GoRouter.of(context).go("/home")}
       },
       listenWhen: (previous, current) =>
           previous.isLoading != current.isLoading,

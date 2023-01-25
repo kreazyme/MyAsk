@@ -3,9 +3,7 @@ import 'package:flutter_application_1/presentation/feature/Home/bloc/home_presen
 import 'package:flutter_application_1/presentation/feature/Home/bloc/home_state.dart';
 import 'package:flutter_application_1/presentation/resource/AppEnum.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../Login/LoginPage.dart';
-import '../Register/RegisterPage.dart';
+import 'package:go_router/go_router.dart';
 import 'AddPostDialog.dart';
 import 'PostItem.dart';
 
@@ -42,11 +40,7 @@ class _HomePageState extends State<HomePage> {
               child: !state.isLogin
                   ? MaterialButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const RegisterPage(),
-                            ));
+                        GoRouter.of(context).push("/register");
                       },
                       child: const Text(
                         "Register",
@@ -59,11 +53,7 @@ class _HomePageState extends State<HomePage> {
               child: !state.isLogin
                   ? MaterialButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginPage(),
-                            ));
+                        GoRouter.of(context).push("/login");
                       },
                       child: const Text(
                         "Login",

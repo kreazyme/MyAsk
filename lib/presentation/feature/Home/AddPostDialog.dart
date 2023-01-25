@@ -7,8 +7,7 @@ import 'package:flutter_application_1/domain/usecases/post/create_post_usecase.d
 import 'package:flutter_application_1/presentation/feature/Home/HomePage.dart';
 import 'package:flutter_application_1/presentation/feature/Home/bloc/home_presenter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../Login/LoginPage.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginDialog extends StatefulWidget {
   const LoginDialog({super.key});
@@ -32,11 +31,7 @@ class _LoginDialogState extends State<LoginDialog> {
         MaterialButton(
           onPressed: () {
             Navigator.of(context).pop();
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LoginPage(),
-                ));
+            GoRouter.of(context).push("/login");
           },
           child: const Text("Login"),
         ),
@@ -90,12 +85,7 @@ class _CreateNewPostDialogState extends State<CreateNewPostDialog> {
             onPressed: () async {
               if (content != "") {
                 await createPost();
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomePage(),
-                    ),
-                    (route) => false);
+                GoRouter.of(context).go("/home");
               }
             },
             child: Text(
