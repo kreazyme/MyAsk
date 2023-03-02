@@ -9,5 +9,5 @@ workflows:
           
           # Publish the notification
           curl -H "Content-Type: multipart/form-data" \
-          -F 'payload_json={"username" : "Hello 123"}' \
+          -F 'payload_json={"username" : "Hello 123", "content":"Demo 12313"}' \
           https://discord.com/api/webhooks/1080668695279435856/vcW5d2JsEqG5nETuUcoFMIknYixOjfz524b1mam7IL-RoqdgCPCUgmbI3N-s9JLxO7I8
