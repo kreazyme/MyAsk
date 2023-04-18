@@ -1,9 +1,14 @@
+## Anonymous ask website like ask.fm
+ - FE: Flutter build web :hammer:
+ - BE: ExpressJS with MongoDB :seedling: and Heroku
+
+## Deployed :rocket:
+ - http://ask.kreazy.me/
+
 ## Expected:
 - [ ] Apply Unit test
-- [ ] Apply Dependency Injection
 - [ ] Install Firebase Crashlytics
 - [ ] Install Firebase Cloud Message
-- [ ] Apply freezed
 
 ## BLoC
 Apply BLoC Pattern in this project with ```bloc_flutter``` package
@@ -56,3 +61,4 @@ Apply Clean Architecture in this project. Here are Project Structure
     ├───resource
     └───widget
 ```
+
